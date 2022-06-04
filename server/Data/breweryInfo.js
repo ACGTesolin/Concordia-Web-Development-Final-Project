@@ -30,3 +30,5 @@ const breweries = [
         id:03
     },
 ]
+
+module.exports = {breweries};
