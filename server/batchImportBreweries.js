@@ -33,6 +33,5 @@ catch (error) {
 client.close();
 
 };
-
 batchImportBreweries();
 
