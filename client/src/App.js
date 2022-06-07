@@ -16,8 +16,13 @@ import Beer from "./IndividualPages/Beer";
 import GlobalStyles from "./GlobalStyles";
 import Footer from "./Components/Footer";
 import Header from "./Components/Header";
+import {useAuth0} from "@auth0/auth0-react"
 
 const App = () => {
+
+  const {isLoading} = useAuth0();
+
+  if (isLoading) return <div>Loading...</div>
   return (
  
       <Wrapper>

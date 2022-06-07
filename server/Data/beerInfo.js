@@ -436,7 +436,7 @@ const beers = [
     type:"Brown Ale",
     abv:"4.4%",
     description:"This is an English inspired walnut-hued Brown Ale.  It is brewed with brown and amber malts. With predominantly malt-caramel aromas, the finish is gentle with a moderate sweetness.",
-    img:".assets/DieuDuCiel/Castelnau_292x558-1.png",
+    img:"./assets/DieuDuCiel/Castelnau_292x558-1.png",
     brewery:"Dieu Du Ciel",
     breweryId:01,
     filter:"Brown"
@@ -760,7 +760,7 @@ const beers = [
     type:"Hop Water",
     abv:"0%",
     description:" A series of sparkling water with tea and hops infusions! For our first edition, we used a passionfruit herbal tea with the Cryo Ekuanot hops - a refreshing and flavourful combination that makes you forget you aren't drinking beer!",
-    img:"server/Data/assets/4Origines/473mLcanmockup_HopWaterPassionfruit_180x446.webp",
+    img:"./assets/4Origines/473mLcanmockup_HopWaterPassionfruit_180x446.webp",
     brewery:"4 Origines",
     breweryId:02,
     filter:"Special"

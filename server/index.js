@@ -11,6 +11,7 @@ app.use(express.json())
 
 app.use("/assets", express.static(path.join(__dirname, "assets")))
 
+app.use("./assets", express.static(path.join(__dirname, "assets")))
 
 // this endpoint  is used to access the entire list of brweries from the database
 

@@ -11,7 +11,6 @@ const Brewery = () => {
     const [error, setError]= useState(false);
     const navigate = useNavigate();
 
-    console.log(id)
    useEffect(() =>{
 
     fetch(`/api/brewery/${id}`)
@@ -86,7 +85,7 @@ return (
                 handleClick(beer._id)
                 }}>
                 <BeerWrapper key={beer._id}>
-                    <BeerImg src = {beer.img} />
+                    <BeerImg src={beer.img[0] === "." ? beer.img.slice(1) : beer.img }/>
                     <Name>{beer.name}</Name>
                     <Type>{beer.type}</Type>
                     <ABV>{beer.abv}</ABV>
@@ -101,6 +100,8 @@ return (
 
     );
 };
+
+export default Brewery;
 
 const Wrapper = styled.div`
  min-height:100vh;
@@ -121,10 +122,17 @@ border:solid 1px  var(--color-Gray);
 width:200px;
 height:200px;
 margin:20px;
-
+display:flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+border-radius: 50%;
 `;
 
-const BeerImg = styled.img``;
+const BeerImg = styled.img`
+height:100px;
+width:60px;
+`;
 
 const Name = styled.div`
 color: var(--color-Yellow);
@@ -208,8 +216,3 @@ border:none;
 }
 `;
 
-
-
-
-
-export default Brewery;

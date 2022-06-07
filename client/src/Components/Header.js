@@ -1,5 +1,7 @@
 import styled from "styled-components";
-import {Link } from "react-router-dom";
+import {Link} from "react-router-dom";
+import LoginButton from "./LoginButton";
+import LogOutButton from "./LogOutButton";
 
 const Header = () => {
 
@@ -8,12 +10,15 @@ const Header = () => {
         <Wrapper>
             <LogoWrapper>
                 <Logo></Logo>
-                <Title>Placeholder</Title>
+                <Title to="/home">Placeholder</Title>
             </LogoWrapper>
 
             <SearchLoginWrapper>
                 <SearchBar>SearchPlaceholder</SearchBar>
-                <Login></Login>
+                <LoginButton/>
+                <LogOutButton/>
+                <Beers to="/beers">Beers</Beers>
+                <Brewery to="/breweries">Breweries</Brewery>
             </SearchLoginWrapper>
            
         </Wrapper>
@@ -36,13 +41,23 @@ const LogoWrapper = styled.div``;
 
 const Logo = styled.img``;
 
-const Title = styled.h1`
+const Title = styled(Link)`
 font-family: "Bungee Inline";
 color: var(--color-Yellow);
+text-decoration: none;
+font-size: 50px;
 `;
 
-const SearchLoginWrapper = styled.div``;
+const SearchLoginWrapper = styled.div`
+display:flex;
+flex-direction: column;
+margin-right:60px;
+`;
 
 const SearchBar = styled.div``;
 
 const Login = styled.button``;
+
+const Beers =styled(Link)``;
+
+const Brewery = styled(Link)``;

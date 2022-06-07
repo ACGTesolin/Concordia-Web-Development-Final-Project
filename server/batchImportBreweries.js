@@ -8,11 +8,21 @@ const options = {
 
 const {breweries} = require("./Data/breweryInfo.js");
 
+
+const modifiedBrewery = [];
+
+breweries.forEach((beer)=>{
+
+    beer.logo[0] === "." ? beer.logo = beer.logo.slice(1) : beer.logo
+    modifiedBrewery.push(beer)
+});
+console.log(modifiedBrewery)
+
 const batchImportBreweries = async () => {
 
     const breweryArr = breweries
 
-    console.log(breweryArr)
+   
     const client = new MongoClient(MONGO_URI, options);
 
 try {
@@ -23,9 +33,9 @@ try {
 
     console.log("connected")
 
-    await db.collection("breweries").insertMany(breweryArr)
+    await db.collection("breweries").insertMany(modifiedBrewery)
 
-    console.log({status:201, data:  breweries, message:"Data import successful"} )
+    console.log({status:201, data:modifiedBrewery, message:"Data import successful"} )
 }
 catch (error) {
     console.log({status:500, message:error.message})

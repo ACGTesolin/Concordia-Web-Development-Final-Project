@@ -18,7 +18,7 @@ return (
     {allBeers &&
     <>
         {allBeers.map((beer)=>{
-             console.log(beer.img)
+        console.log(beer.img)
             return (
                 <Button key={beer._id}
                 name="individualBeer"
@@ -36,7 +36,6 @@ return (
                 </Button>
             )
         })}
-        <img src = "./assets/DieuDuCiel_logo.jpeg"/>
  </>
 }
     </Wrapper>
