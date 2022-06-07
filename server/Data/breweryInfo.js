@@ -7,6 +7,7 @@ const breweries = [
         logo:"./assets/DieuDuCiel_logo.jpeg",
         brewer:"Jean Francois Gravel",
         founded:"1998",
+        website:"https://www.dieuduciel.com/",
         id:01
     },
 
@@ -17,6 +18,7 @@ const breweries = [
         logo:"./assets/4-Origines-Logo.jpeg",
         brewer:"Braden Richards",
         founded:"2018",
+        website:"https://www.4origines.com/",
         id:02
     },
 
@@ -27,6 +29,7 @@ const breweries = [
         logo:"./assets/espace-public-logo.png",
         brewer:"Simon Livingstone",
         founded:"2012",
+        website:"https://www.lespacepublic.ca/",
         id:03
     },
 ]
