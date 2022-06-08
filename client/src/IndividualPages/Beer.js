@@ -2,6 +2,8 @@ import styled from "styled-components";
 import { useEffect, useState} from "react";
 import {useNavigate, useParams, Link} from "react-router-dom";
 import {useAuth0} from "@auth0/auth0-react";
+import CommentBox from "../Components/CommentBox";
+
 
 const Beer = () => {
 
@@ -63,31 +65,48 @@ const Beer = () => {
         <Wrapper>
             {beer && isLoaded &&
             <Content>
-            <ImgWrapper>
-                <Img src={beer.img}></Img>
-            </ImgWrapper>
-            <InfoWrapper>
-                <Name>{beer.name}</Name>
-                <Type>{beer.type}</Type>
-                <Abv>ABV: {beer.abv}</Abv>
-                <Description>{beer.description}</Description>
-                <Brewery to = {`/brewery/${beer.breweryId}`}>Go to: {beer.brewery}</Brewery>
-                {isAuthenticated && (
-                <Favourite onClick={handleSubmit}>Favourite</Favourite>
-                )}
-            </InfoWrapper>
+                <ImgWrapper>
+                    <Img src={beer.img}></Img>
+                </ImgWrapper>
+                <InfoWrapper>
+                    <Name>{beer.name}</Name>
+                    <Type>{beer.type}</Type>
+                    <Abv>ABV: {beer.abv}</Abv>
+                    <Description>{beer.description}</Description>
+                    <Brewery to = {`/brewery/${beer.breweryId}`}>Go to: {beer.brewery}</Brewery>
+                    {isAuthenticated && (
+                    <Favourite onClick={handleSubmit}> Add Favourite</Favourite>
+                    )}
+                </InfoWrapper>
             </Content>
-}
+                
+            }
+            <CommentWrapper>
+            <CommentBox/>
+            
+            </CommentWrapper>
+
         </Wrapper>
-
-       )
-
+    )
 };
 
 export default Beer;
 
-const Favourite = styled.button`
+const CommentWrapper = styled.div`
+min-height:100vh;
+`;
 
+const Favourite = styled.button`
+border-radius:20px;
+border:none;
+background-color:var(--color-Yellow);
+color:var(--color-DarkGray);
+font-family: "varela";
+&
+:hover{
+    cursor: pointer;
+    transform:scale(1.06);
+}
 `;
 
 const Brewery = styled(Link)`

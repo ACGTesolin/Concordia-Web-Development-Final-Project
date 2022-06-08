@@ -147,7 +147,7 @@ const getBeer = async (request, response) => {
     try {
 
         await client.connect();
-      
+    
         const db = client.db("FPDB");
 
         const result = await db.collection("beers").find().toArray();
@@ -267,6 +267,68 @@ const deleteFavourite = async (request, response) => {
     }
 };
 
+//this function adds a new comment to the database
+
+const addComment = async (request, response) =>{
+
+    const client = new MongoClient(MONGO_URI, options);
+
+    let comment = request.body;
+
+    try{
+
+        await client.connect();
+
+        const db = client.db("FPDB");
+
+        //add comments data to comments collection
+        const result = await db.collection("comments").insertOne(comment);
+
+        result
+
+        ? response.status(201).json({status: 201, data: result, message: "Comment added successfully"})
+
+        : response.status(500).json({status: 500, message: error.message});
+
+        await client.close();
+    
+    }catch(error){
+console.log(error.stack)
+    }
+}
+
+//this function retrtieves all the comments for a single beer
+
+const getComments = async (request, response) => {
+
+    const client = new MongoClient(MONGO_URI, options);
+
+    const beerId = request.params.id; 
+
+    try {
+
+        await client.connect();
+
+        const db = client.db("FPDB");
+
+        const result = await db.collection("comments").find().toArray();
+
+        const targetComment = result.filter(comment => comment.id == beerId)
+
+        targetComment
+
+        ? response.status(200).json({status: 200, data: targetComment, message: "Comments Retrieved"})
+
+        : response.status(404).json({status: 404, message: "Comments not found"});
+
+        client.close();
+
+    }
+    catch(error){
+
+        console.log(error.stack)
+    }
+};
 
 
 
@@ -279,4 +341,6 @@ module.exports = {
                     addFavourite,
                     getFavourites,
                     deleteFavourite,
+                    addComment,
+                    getComments,
                 }

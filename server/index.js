@@ -12,6 +12,8 @@ const {
     addFavourite,
     getFavourites,
     deleteFavourite,
+    addComment,
+    getComments,
 } = require("./handlers");
 
 
@@ -53,6 +55,14 @@ app.get("/api/favourites/:id", getFavourites)
 //this enpoindt is used to delete a favourited beer
 
 app.delete("/api/delete-favourites/:id", deleteFavourite)
+
+//this endpoint is used to add a comment to the database
+
+app.post("/api/comment", addComment)
+
+//this endpoint is used to retrieve all the comments for a specific beer
+
+app.get("/api/get-comments/:id", getComments)
 
 
 
