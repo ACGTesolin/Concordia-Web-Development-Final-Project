@@ -2,8 +2,11 @@ import styled from "styled-components";
 import {Link} from "react-router-dom";
 import LoginButton from "./LoginButton";
 import LogOutButton from "./LogOutButton";
+import {useAuth0} from "@auth0/auth0-react";
 
 const Header = () => {
+
+    const {user, isAuthenticated} = useAuth0();
 
     return (
 
@@ -19,6 +22,9 @@ const Header = () => {
                 <LogOutButton/>
                 <Beers to="/beers">Beers</Beers>
                 <Brewery to="/breweries">Breweries</Brewery>
+                { isAuthenticated &&  (
+                <Profile to="/my-account">{user.name}</Profile>
+                )}
             </SearchLoginWrapper>
            
         </Wrapper>
@@ -61,3 +67,5 @@ const Login = styled.button``;
 const Beers =styled(Link)``;
 
 const Brewery = styled(Link)``;
+
+const Profile = styled(Link)``;

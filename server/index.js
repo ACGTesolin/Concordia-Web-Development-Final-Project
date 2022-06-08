@@ -3,7 +3,16 @@ const morgan = require("morgan");
 const app = express();
 const path = require('path');
 
-const {getAllBreweries, getAllBeers, getBrewery, getBeersByBrewery, getBeer} = require("./handlers");
+const {
+    getAllBreweries, 
+    getAllBeers, 
+    getBrewery, 
+    getBeersByBrewery, 
+    getBeer,
+    addFavourite,
+    getFavourites,
+    deleteFavourite,
+} = require("./handlers");
 
 
 app.use(morgan("tiny"))
@@ -32,6 +41,18 @@ app.get("/api/brewery-beers/:id", getBeersByBrewery)
 //this endpoint is used to access the information for a single beer
 
 app.get("/api/beer/:id", getBeer)
+
+//this endpoint is used to add a favourited beer to the database
+
+app.post("/api/add-favourite", addFavourite)
+
+//this endpoint is used to retrieve all the favourited beers for a specific user
+
+app.get("/api/favourites/:id", getFavourites)
+
+//this enpoindt is used to delete a favourited beer
+
+app.delete("/api/delete-favourites/:id", deleteFavourite)
 
 
 

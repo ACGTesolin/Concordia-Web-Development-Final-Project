@@ -18,7 +18,6 @@ return (
     {allBeers &&
     <>
         {allBeers.map((beer)=>{
-        console.log(beer.img)
             return (
                 <Button key={beer._id}
                 name="individualBeer"

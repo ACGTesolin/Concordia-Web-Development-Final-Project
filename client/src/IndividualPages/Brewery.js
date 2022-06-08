@@ -119,14 +119,15 @@ background-size: cover;
 const BeerWrapper = styled.div`
 font-family:"Varela";
 border:solid 1px  var(--color-Gray);
-width:200px;
-height:200px;
+width:250px;
+height:250px;
 margin:20px;
 display:flex;
 flex-direction: column;
 justify-content: center;
 align-items: center;
 border-radius: 50%;
+box-shadow: 1px 1px 0 0 var(--color-Gray);
 `;
 
 const BeerImg = styled.img`
@@ -141,6 +142,7 @@ font-weight:bold;
  
 const Type = styled.div`
 color:var(--color-ghostWhite);
+font-size:12px;
 `;
 
 const ABV = styled.div`

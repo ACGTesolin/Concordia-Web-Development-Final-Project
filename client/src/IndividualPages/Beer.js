@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { useEffect, useState} from "react";
 import {useNavigate, useParams, Link} from "react-router-dom";
+import {useAuth0} from "@auth0/auth0-react";
 
 const Beer = () => {
 
@@ -8,6 +9,11 @@ const Beer = () => {
     const {id} = useParams();
     const [isLoaded, setIsLoaded] = useState(false);
     const [error, setError]= useState(false);
+    const {user, isAuthenticated} = useAuth0();
+    const [favourite, setFavourite] = useState(null);
+    let faveArray = [];
+
+    
 
     useEffect(() =>{
 
@@ -18,20 +24,44 @@ const Beer = () => {
         .then((data) => {
             if(data.status === 200){
             setBeer(data.data[0])
-            console.log(data.data)
             setIsLoaded(true)
             }
         })
         .catch((error) =>{
             setError(true)
         })
-    
-       },[]);
+    },[]);
+
+    const handleSubmit = ((e) => {
+
+        e.preventDefault();
+
+        fetch("/api/add-favourite", {
+            method: "POST",
+            headers:{
+                "Content-Type" : "application/json",
+                "Accept" : "application/json",
+            },
+            body: JSON.stringify({id:user.sub, beerId:beer._id, name:beer.name, img:beer.img})
+        })
+        .then((response) => response.json())
+
+        .then((data) => {
+
+            setIsLoaded(true)
+        })
+
+        .catch((error) =>{
+            setError(true)
+        })
+
+
+    });
 
        return (
 
         <Wrapper>
-            {beer &&
+            {beer && isLoaded &&
             <Content>
             <ImgWrapper>
                 <Img src={beer.img}></Img>
@@ -42,6 +72,9 @@ const Beer = () => {
                 <Abv>ABV: {beer.abv}</Abv>
                 <Description>{beer.description}</Description>
                 <Brewery to = {`/brewery/${beer.breweryId}`}>Go to: {beer.brewery}</Brewery>
+                {isAuthenticated && (
+                <Favourite onClick={handleSubmit}>Favourite</Favourite>
+                )}
             </InfoWrapper>
             </Content>
 }
@@ -52,6 +85,10 @@ const Beer = () => {
 };
 
 export default Beer;
+
+const Favourite = styled.button`
+
+`;
 
 const Brewery = styled(Link)`
 font-family: "varela";
