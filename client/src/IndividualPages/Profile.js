@@ -57,13 +57,13 @@ const Profile = () => {
 isAuthenticated && favourites && (
         <Wrapper>
             <InfoWrapper>
-            <Img src={user.picture} /> 
-            <h2> {user.name}</h2>
-            <p>{user.email}</p>
+                <Img src={user.picture} /> 
+                <h2> {user.name}</h2>
+                <p>{user.email}</p>
             {/* {JSON.stringify(user, null, 2)} */}
             </InfoWrapper>
-            <FavouriteWrapper>
-            <h2>Favourite Beers</h2>
+                <FavouriteWrapper>
+                    <h2>Favourite Beers</h2>
                 {favourites.map((favourite)=>{
                     return(
                     <Fav2>
@@ -76,12 +76,10 @@ isAuthenticated && favourites && (
                             <BeerName>{favourite.name}</BeerName>
                             <BeerImg src={favourite.img}/>
                         </Favourite>
-                        <Delete onClick={() => {handleDelete(favourite._id)}}>Remove</Delete>
-                        </Fav2>
-            
+                            <Delete onClick={() => {handleDelete(favourite._id)}}>Remove</Delete>
+                    </Fav2>
                     )
-                })}
-             
+                })} 
             </FavouriteWrapper>
         </Wrapper>
         )

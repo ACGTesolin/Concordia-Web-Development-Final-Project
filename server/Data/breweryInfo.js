@@ -8,7 +8,8 @@ const breweries = [
         brewer:"Jean Francois Gravel",
         founded:"1998",
         website:"https://www.dieuduciel.com/",
-        id:01
+        id:01,
+        coordinates:[45.52288, -73.59345]
     },
 
     {
@@ -19,7 +20,8 @@ const breweries = [
         brewer:"Braden Richards",
         founded:"2018",
         website:"https://www.4origines.com/",
-        id:02
+        id:02,
+        coordinates:[45.48836, -73.55788]
     },
 
     {
@@ -30,7 +32,8 @@ const breweries = [
         brewer:"Simon Livingstone",
         founded:"2012",
         website:"https://www.lespacepublic.ca/",
-        id:03
+        id:03,
+        coordinates:[45.5455,-73.5443]
     },
 ]
 

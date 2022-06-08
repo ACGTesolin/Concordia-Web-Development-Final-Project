@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import App from './App';
 import {BeerInfoProvider} from "./BeerInfoContext";
 import {Auth0Provider} from "@auth0/auth0-react";
-
+import "leaflet/dist/leaflet.css";
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
