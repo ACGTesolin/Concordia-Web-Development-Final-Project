@@ -11,6 +11,10 @@ const Profile = () => {
     const [deleteId, setDeleteId] = useState();
 
 
+    const handleClick = (beerId) => {
+        navigate(`/beer/${beerId}`)
+    };
+    
     useEffect(()=>{
 
         fetch(`/api/favourites/${user.sub}`)
@@ -28,10 +32,12 @@ const Profile = () => {
     },[])
 
     const handleDelete = ((e)=>{
-        e.preventDefault();
-        setDeleteId(e)
 
-        fetch(`/api/delete-favourites/${deleteId}`, {
+        // e.preventDefault();
+
+        setDeleteId(e)
+if (deleteId){
+        fetch(`/api/delete-favourites/${e}`, {
             method: "DELETE",
             headers:{
                 "Content-Type" : "application/json",
@@ -42,16 +48,13 @@ const Profile = () => {
         .then(response => response.json())
 
         .then((data) => console.log(data))
-
+     
         .catch((error) =>{
             console.log(error.stack)
         })
+    }
     });
-
-    const handleClick = (beerId) => {
-        navigate(`/beer/${beerId}`)
-    };
-
+    console.log(deleteId);
 
     return (
 isAuthenticated && favourites && (
@@ -66,8 +69,8 @@ isAuthenticated && favourites && (
                     <h2>Favourite Beers</h2>
                 {favourites.map((favourite)=>{
                     return(
-                    <Fav2>
-                        <Favourite key={favourite._id}
+                    <Fav2 key={favourite._id}>
+                        <Favourite 
                         name="individualBeer"
                         type="button"
                         onClick={() => {

@@ -14,6 +14,23 @@ const CommentBox = () => {
       setTextEntry(event.target.value);
      
     };
+
+    useEffect(() => {
+
+      fetch(`/api/get-comments/${id}`)
+
+      .then((res) => res.json())
+
+      .then((data) => {
+
+        setComments(data.data)
+      })
+
+      .catch((error) =>{
+
+      })
+
+    },[])
   
     const handleSubmit = (e) => {
 
@@ -36,7 +53,11 @@ const CommentBox = () => {
           .then((res) => res.json())
   
           .then((data) => {
-          
+            
+            const newComment = data.data;
+            let currentComments = [newComment, ...comments]
+            console.log(currentComments)
+          setComments(currentComments)
           })
           .catch((error) => {
         
@@ -45,22 +66,7 @@ const CommentBox = () => {
       setTextEntry("");
     };
   
-    useEffect(() => {
-
-      fetch(`/api/get-comments/${id}`)
-
-      .then((res) => res.json())
-
-      .then((data) => {
-console.log(data.data)
-        setComments(data.data)
-      })
-
-      .catch((error) =>{
-
-      })
-
-    },[])
+ 
     
     return (
       
@@ -86,13 +92,15 @@ console.log(data.data)
       )}
 
           </NewComment>
-          {comments.map((comment)=>{
+           {comments.map((comment)=>{
+             return (
               <Comment
               avatarSrc={comment.avatar}
               handle={comment.name}
               text={comment.comment}
               commentId={comment._id}
               />
+             )
           })}
           </div>
           

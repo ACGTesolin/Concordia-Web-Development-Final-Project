@@ -1,6 +1,7 @@
 "use-strict"
 
 const { MongoClient } = require("mongodb");
+const mongo = require("mongodb");
 require("dotenv").config();
 const fs = require("fs");
 const { builtinModules } = require("module");
@@ -9,6 +10,8 @@ const options = {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 };
+const { v4: uuidv4 } = require("uuid");
+
 
 //function that retrieves all breweries from the database
 
@@ -175,7 +178,7 @@ const addFavourite = async (request, response) =>{
 
     const client = new MongoClient(MONGO_URI, options);
 
-    let favourite = request.body;
+    let favourite = {...request.body, _id: uuidv4()};
 
     try{
 
@@ -246,19 +249,21 @@ const deleteFavourite = async (request, response) => {
 
         const db = client.db("FPDB");
 
-        const result = await db.collection("favourites").find().toArray();
+         const result = await db.collection("favourites").find().toArray();
 
-        const targetFave = result.filter(fave => fave._id == deleteId)
+         const targetFave = result.filter(fave => fave._id == deleteId)
 
-        const deleteFave = await db.collection("favourites").deleteOne({deleteId})
+        const deleteQuery = {"_id": deleteId}
+console.log(deleteQuery)
+        const deleteFave = await db.collection("favourites").deleteOne(deleteQuery)
 
-        targetFave
+        deleteFave
 
         ? response.status(200).json({status: 200, data: deleteFave, message: "Favourites Deleted"})
 
         : response.status(404).json({status: 404, message: "Favourites not found"});
 
-        client.close();
+        await client.close();
 
     }
     catch(error){
@@ -286,7 +291,7 @@ const addComment = async (request, response) =>{
 
         result
 
-        ? response.status(201).json({status: 201, data: result, message: "Comment added successfully"})
+        ? response.status(201).json({status: 201, data:comment, message: "Comment added successfully"})
 
         : response.status(500).json({status: 500, message: error.message});
 

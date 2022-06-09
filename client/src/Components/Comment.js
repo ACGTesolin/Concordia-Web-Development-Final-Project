@@ -6,7 +6,7 @@ const Comment = ({avatarSrc, handle, text, commentId}) => {
 
 
     return (
-    <>
+  
     <CommentWrapper key={commentId}>
 
       <Header>
@@ -22,7 +22,7 @@ const Comment = ({avatarSrc, handle, text, commentId}) => {
         </UserInfo>
       </Header>
     </CommentWrapper>
-  </>
+
 );
 };
 
@@ -49,16 +49,6 @@ flex-direction: row;
 flex: 1;
 `;
 
-const DisplayName = styled.div`
-font-weight: bold;
-text-decoration: none;
-font-size: 15px;
-line-height: 20px;
-&:hover {
-  text-decoration: underline;
-  cursor: pointer;
-}
-`;
 
 const Username = styled.div`
 color: var(--color-DarkGray);
@@ -68,7 +58,6 @@ margin-left: 8px;
 line-height: 20px;
 `;
 
-
 const Avatar = styled.img`
 height: 50px;
 width: 50px;
@@ -77,17 +66,15 @@ border-radius: 50px;
 const UserInfo = styled.div`
 display: block;
 `;
-const ProfileButton = styled.button`
-background-color: white;
-border: 0px;
 
-&:hover {
-  cursor: pointer;
-}
-`;
 
 const Text = styled.div`
 padding: 3px 16px;
+background-color: var(--color-ghostWhite);
+margin-left:10px;
+margin-bottom: 10px;
+border: solid 2px black;
+border-radius: 15px;
 &:hover {
   cursor: pointer;
 }
