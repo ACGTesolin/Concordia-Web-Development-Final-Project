@@ -259,7 +259,7 @@ console.log(deleteQuery)
 
         deleteFave
 
-        ? response.status(200).json({status: 200, data: deleteFave, message: "Favourites Deleted"})
+        ? response.status(200).json({status: 200, data: deleteId, message: "Favourites Deleted"})
 
         : response.status(404).json({status: 404, message: "Favourites not found"});
 

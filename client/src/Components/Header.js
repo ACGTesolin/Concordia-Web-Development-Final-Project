@@ -3,6 +3,7 @@ import {Link} from "react-router-dom";
 import LoginButton from "./LoginButton";
 import LogOutButton from "./LogOutButton";
 import {useAuth0} from "@auth0/auth0-react";
+import BeerSearchBar from "./BeerSearchBar"
 
 const Header = () => {
 
@@ -17,7 +18,7 @@ const Header = () => {
             </LogoWrapper>
 
             <SearchLoginWrapper>
-                <SearchBar>SearchPlaceholder</SearchBar>
+                <BeerSearchBar/>
                 <LoginButton/>
                 <LogOutButton/>
                 <Beers to="/beers">Beers</Beers>
@@ -56,13 +57,12 @@ font-size: 50px;
 
 const SearchLoginWrapper = styled.div`
 display:flex;
-flex-direction: column;
+/* flex-direction:column ; */
 margin-right:60px;
 `;
 
-const SearchBar = styled.div``;
+// const SearchBar = styled.div``;
 
-const Login = styled.button``;
 
 const Beers =styled(Link)``;
 

@@ -13,6 +13,7 @@ const Profile = () => {
 
     const handleClick = (beerId) => {
         navigate(`/beer/${beerId}`)
+
     };
     
     useEffect(()=>{
@@ -36,7 +37,7 @@ const Profile = () => {
         // e.preventDefault();
 
         setDeleteId(e)
-if (deleteId){
+
         fetch(`/api/delete-favourites/${e}`, {
             method: "DELETE",
             headers:{
@@ -47,23 +48,31 @@ if (deleteId){
 
         .then(response => response.json())
 
-        .then((data) => console.log(data))
+        .then((data) => {
+            console.log(data.data)
+            if(data.status === 200){
+            let newFavs = favourites.filter(fav => fav._id !== data.data);
+
+            return setFavourites(newFavs)
+         
+            }
+        })
      
         .catch((error) =>{
             console.log(error.stack)
         })
-    }
+
     });
-    console.log(deleteId);
+    console.log(favourites)
 
     return (
-isAuthenticated && favourites && (
+isAuthenticated && favourites &&  (
         <Wrapper>
             <InfoWrapper>
                 <Img src={user.picture} /> 
                 <h2> {user.name}</h2>
                 <p>{user.email}</p>
-            {/* {JSON.stringify(user, null, 2)} */}
+       
             </InfoWrapper>
                 <FavouriteWrapper>
                     <h2>Favourite Beers</h2>
@@ -79,7 +88,10 @@ isAuthenticated && favourites && (
                             <BeerName>{favourite.name}</BeerName>
                             <BeerImg src={favourite.img}/>
                         </Favourite>
-                            <Delete onClick={() => {handleDelete(favourite._id)}}>Remove</Delete>
+                            <Delete onClick={() => {
+                                setDeleteId(favourite._)
+                                handleDelete(favourite._id)
+                                }}>Remove</Delete>
                     </Fav2>
                     )
                 })} 

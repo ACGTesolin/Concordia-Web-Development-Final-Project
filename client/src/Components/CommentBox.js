@@ -94,7 +94,7 @@ const CommentBox = () => {
           </NewComment>
            {comments.map((comment)=>{
              return (
-              <Comment
+              <Comment key={comment._id}
               avatarSrc={comment.avatar}
               handle={comment.name}
               text={comment.comment}
@@ -138,13 +138,14 @@ const CommentBoxWrapper = styled.div`
 
 
 const CommentInput = styled.textarea`
-  color: black;
+  color: var(--color-DarkGray);
   margin-top: 10px;
   resize: none;
   width: 100%;
   width: 500px;
   height: 150px;
   font-size: 18px;
+  font-family: "varela";
   border: 0px solid;
   &:focus {
     outline: none;
