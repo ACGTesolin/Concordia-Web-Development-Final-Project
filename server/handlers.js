@@ -254,7 +254,7 @@ const deleteFavourite = async (request, response) => {
          const targetFave = result.filter(fave => fave._id == deleteId)
 
         const deleteQuery = {"_id": deleteId}
-console.log(deleteQuery)
+
         const deleteFave = await db.collection("favourites").deleteOne(deleteQuery)
 
         deleteFave
@@ -335,6 +335,39 @@ const getComments = async (request, response) => {
     }
 };
 
+//this function retireves all the favourited items of a specific user
+
+const getFavouritedBeer = async (request, response) => {
+
+    const client = new MongoClient(MONGO_URI, options);
+
+    const beerId = request.params.id; 
+
+    try {
+
+        await client.connect();
+
+        const db = client.db("FPDB");
+
+        const result = await db.collection("favourites").find().toArray();
+
+        const targetFave = result.filter(fave => fave.beerId == beerId)
+
+        targetFave
+
+        ? response.status(200).json({status: 200, data: targetFave, message: "Favourites Retrieved"})
+
+        : response.status(404).json({status: 404, message: "Favourites not found"});
+
+        client.close();
+
+    }
+    catch(error){
+
+        console.log(error.stack)
+    }
+};
+
 
 
 module.exports = {
@@ -348,4 +381,5 @@ module.exports = {
                     deleteFavourite,
                     addComment,
                     getComments,
+                    getFavouritedBeer
                 }

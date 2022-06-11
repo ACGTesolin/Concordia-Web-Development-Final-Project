@@ -7,7 +7,7 @@ export default createGlobalStyle`
 */
 
 :root {
-      --color-Yellow: rgb(255, 222, 89);
+      --color-Yellow: rgb(265, 180, 70);
       --color-Gray: rgb(74, 74, 89);
       --color-ghostWhite: rgb(244, 244, 248);
       --color-DarkGray: rgb(38, 38, 46);

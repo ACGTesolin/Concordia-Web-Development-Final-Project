@@ -14,6 +14,7 @@ const {
     deleteFavourite,
     addComment,
     getComments,
+    getFavouritedBeer,
 } = require("./handlers");
 
 
@@ -63,6 +64,10 @@ app.post("/api/comment", addComment)
 //this endpoint is used to retrieve all the comments for a specific beer
 
 app.get("/api/get-comments/:id", getComments)
+
+//this endpoint is used to access all the favourites for one beer
+
+app.get("/api/beer-favourites/:id", getFavouritedBeer)
 
 
 

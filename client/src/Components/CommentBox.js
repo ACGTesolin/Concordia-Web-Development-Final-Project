@@ -75,7 +75,7 @@ const CommentBox = () => {
       <div>
           <NewComment onSubmit={handleSubmit}>
             <CommentInput
-              placeholder= {isAuthenticated ? "What do you think of this beer?" : "Log In to comment on this beer!"}
+              placeholder= {isAuthenticated ? "What do you think of this beer?" : "Log In to comment on this beer and see other comments!"}
               onChange={handleChange}
               aria-label="new-tweet-here"
               value={textEntry}

@@ -14,7 +14,7 @@ const Header = () => {
         <Wrapper>
             <LogoWrapper>
                 <Logo></Logo>
-                <Title to="/home">Placeholder</Title>
+                <Title to="/home">Broue-mance </Title>
             </LogoWrapper>
 
             <SearchLoginWrapper>

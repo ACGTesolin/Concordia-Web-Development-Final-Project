@@ -2,7 +2,9 @@ import {
   BrowserRouter as Router,
   Routes,
   Route,
+  Navigate,
 } from "react-router-dom";
+import   {Redirect} from "react-router";
 import styled from "styled-components";
 import Verification from "./IndividualPages/Verification";
 import Home from "./IndividualPages/Home";
@@ -17,29 +19,34 @@ import GlobalStyles from "./GlobalStyles";
 import Footer from "./Components/Footer";
 import Header from "./Components/Header";
 import {useAuth0} from "@auth0/auth0-react"
+import AgeContext from "./AgeContext";
+import {useContext} from "react";
 
 const App = () => {
+  const {ageVerification} = useContext(AgeContext);
 
-  const {isLoading} = useAuth0();
+  const {isLoading, isAuthenticated} = useAuth0();
 
   if (isLoading) return <div>Loading...</div>
   return (
  
       <Wrapper>
+      
         <Router>
           <GlobalStyles />
+          {ageVerification &&
           <Header/>
-  
+          }
           <ContentContainer>
           <Routes>
             <Route path  ="/" element={<Verification/>} />
-            <Route path ="/home" element={<Home/>} />
+            <Route path ="/home" element={ageVerification ? <Home/> : <Navigate to="/"/> } />
             <Route path="/login" element={<Login/>} />
-            <Route path="/beers" element={<Beers/>} />
-            <Route exact path="/beer/:id" element={<Beer/>} />
-            <Route path="/breweries" element={<Breweries/>} />
-            <Route path="/brewery/:id" element={<Brewery/>} />
-            <Route path="/my-account" element={<Profile/>} />
+            <Route path="/beers" element={ageVerification ? <Beers/> : <Navigate to="/"/>} />
+            <Route exact path="/beer/:id" element={ageVerification ? <Beer/> : <Navigate to="/"/>} />
+            <Route path="/breweries" element={ageVerification ? <Breweries/> : <Navigate to="/"/>} />
+            <Route path="/brewery/:id" element={ageVerification ? <Brewery/> : <Navigate to="/"/>} />
+            <Route path="/my-account" element={!ageVerification  ? <Navigate to="/"/> : ageVerification && !isAuthenticated ? <Navigate to="/home"/> :  <Profile/>   } />
             <Route path="/location" element={<Location/>} />
           </Routes>
           </ContentContainer>
@@ -48,6 +55,7 @@ const App = () => {
             <Footer />
           </div>
         </Router>
+       
       </Wrapper>
     );
   }

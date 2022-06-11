@@ -5,9 +5,15 @@ const LogOutButton = () => {
 
     const {logout, isAuthenticated} = useAuth0();
 
+
+    const handleClick = () =>{
+        logout()
+        sessionStorage.clear()
+
+    }
     return(
         isAuthenticated && (
-        <Button onClick={()=>logout()}>
+        <Button onClick={handleClick}>
 
             Log Out
 

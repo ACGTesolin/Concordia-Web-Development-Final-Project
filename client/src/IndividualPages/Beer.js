@@ -12,7 +12,8 @@ const Beer = () => {
     const [isLoaded, setIsLoaded] = useState(false);
     const [error, setError]= useState(false);
     const {user, isAuthenticated} = useAuth0();
-    const [favourite, setFavourite] = useState(null);
+    const [isFavourite, setIsFavourite] = useState(null);
+    const [favourited, setFavourited] = useState()
     let faveArray = [];
 
     
@@ -37,7 +38,8 @@ const Beer = () => {
     const handleSubmit = ((e) => {
 
         e.preventDefault();
-
+        setIsFavourite(e)
+        setFavourited("Favourite")
         fetch("/api/add-favourite", {
             method: "POST",
             headers:{
@@ -56,14 +58,31 @@ const Beer = () => {
         .catch((error) =>{
             setError(true)
         })
+});
 
+ useEffect(()=>{
 
-    });
+        fetch(`/api/beer-favourites/${id}`)
+     
+        .then(response => response.json())
 
+        .then((data) => {
+           
+            let userFav = data.data.filter((fav => fav.id === user.sub))
+            setIsFavourite(userFav)
+         
+        })
+
+        .catch((error) =>{
+            console.log(error.stack)
+        })
+
+    },[])
+    console.log(favourited)
        return (
 
         <Wrapper>
-            {beer && isLoaded &&
+            {beer && isLoaded && 
             <Content>
                 <ImgWrapper>
                     <Img src={beer.img}></Img>
@@ -74,9 +93,9 @@ const Beer = () => {
                     <Abv>ABV: {beer.abv}</Abv>
                     <Description>{beer.description}</Description>
                     <Brewery to = {`/brewery/${beer.breweryId}`}>Go to: {beer.brewery}</Brewery>
-                    {isAuthenticated && (
+                    { isAuthenticated && isFavourite.length === 0 ? (
                     <Favourite onClick={handleSubmit}> Add Favourite</Favourite>
-                    )}
+                    ):(isFavourite && isFavourite.length === 1 ? (<FavMsg>Favourite</FavMsg>):(null))}
                 </InfoWrapper>
             </Content>
                 
@@ -91,6 +110,14 @@ const Beer = () => {
 };
 
 export default Beer;
+
+const FavMsg = styled.div`
+color: var(--color-Yellow);
+font-family: "varela";
+border: solid 1px var(--color-Yellow);
+text-align: center;
+border-radius: 20px;
+`;
 
 const CommentWrapper = styled.div`
 min-height:100vh;

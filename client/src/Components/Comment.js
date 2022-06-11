@@ -1,14 +1,16 @@
 import styled from "styled-components";
+import {useAuth0} from "@auth0/auth0-react";
 
 
 
 const Comment = ({avatarSrc, handle, text, commentId}) => {
 
+  const {isAuthenticated} = useAuth0();
 
     return (
   
     <CommentWrapper key={commentId}>
-
+{isAuthenticated &&
       <Header>
         <Avatar src={avatarSrc} />
         <UserInfo>
@@ -21,6 +23,7 @@ const Comment = ({avatarSrc, handle, text, commentId}) => {
           </Text>
         </UserInfo>
       </Header>
+      }
     </CommentWrapper>
 
 );
@@ -75,6 +78,7 @@ margin-left:10px;
 margin-bottom: 10px;
 border: solid 2px black;
 border-radius: 15px;
+font-family: "varela";
 &:hover {
   cursor: pointer;
 }

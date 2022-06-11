@@ -49,7 +49,7 @@ const Profile = () => {
         .then(response => response.json())
 
         .then((data) => {
-            console.log(data.data)
+        
             if(data.status === 200){
             let newFavs = favourites.filter(fav => fav._id !== data.data);
 
@@ -63,7 +63,7 @@ const Profile = () => {
         })
 
     });
-    console.log(favourites)
+
 
     return (
 isAuthenticated && favourites &&  (
