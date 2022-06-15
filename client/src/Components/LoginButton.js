@@ -19,4 +19,8 @@ const Button = styled.button`
   font-family: "varela";
   color: var(--color-DarkGray);
   border-radius: 5px;
+  &
+  :hover{
+    cursor: pointer;
+  }
 `;

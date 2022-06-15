@@ -17,7 +17,7 @@ const VerificationContent = () => {
   return (
     <VerWrapper>
       <Title src="/Broue-ManceWhiteLogoOrange.png" />
-      <Restriction>This page is age restricted. </Restriction>
+      <Restriction>This website is age restricted. </Restriction>
       <VLabel>Please verify that you are 18 years or older</VLabel>
       <Input type="verification" onClick={handleClick}>
         Verify

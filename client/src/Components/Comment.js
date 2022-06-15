@@ -36,11 +36,13 @@ display: flex;
 `;
 
 const CommentWrapper = styled.div`
-border-bottom: 1px solid;
+border: 1px solid;
 border-color: var(--color-Gray);
-padding-right: 16px;
+padding: 16px;
 margin: 15px;
+width:40%;
 text-align: left;
+justify-content: center;
 `;
 
 const NameInfo = styled.div`

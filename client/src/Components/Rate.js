@@ -61,10 +61,12 @@ const Wrapper = styled.div`
 display:flex;
 flex-direction: column;
 align-items: center;
+margin-top: 30px;
 `;
 
 const Title = styled.h2`
-
+font-family: "varela";
+color: var(--color-Yellow);
 `;
 
 const Stars = styled.div`

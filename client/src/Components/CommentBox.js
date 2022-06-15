@@ -124,7 +124,8 @@ export default CommentBox;
 
 const CommentBoxWrapper = styled.div`
   border-bottom: 10px;
-
+margin-left:50px;
+margin-top:30px;
   `;
 
   const NewComment = styled.form`
