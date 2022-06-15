@@ -4,6 +4,9 @@ import LoginButton from "./LoginButton";
 import LogOutButton from "./LogOutButton";
 import {useAuth0} from "@auth0/auth0-react";
 import BeerSearchBar from "./BeerSearchBar"
+import {IoIosBeer} from "react-icons/io";
+import {GiFactory} from "react-icons/gi";
+import {CgProfile} from "react-icons/cg";
 
 const Header = () => {
 
@@ -13,19 +16,22 @@ const Header = () => {
 
         <Wrapper>
             <LogoWrapper>
-                <Logo></Logo>
-                <Title to="/home">Broue-mance </Title>
+                <Title to="/home">
+                    <Logo src="/Broue-ManceWhiteLogoOrange.png"/>
+                     </Title>
             </LogoWrapper>
 
             <SearchLoginWrapper>
                 <BeerSearchBar/>
-                <LoginButton/>
-                <LogOutButton/>
-                <Beers to="/beers">Beers</Beers>
-                <Brewery to="/breweries">Breweries</Brewery>
+             
+           
+                <Beers to="/beers"><IoIosBeer size={40}/></Beers>
+                <Brewery to="/breweries"><GiFactory size={40}/></Brewery>
                 { isAuthenticated &&  (
-                <Profile to="/my-account">{user.name}</Profile>
+                <Profile to="/my-account"><CgProfile size={40}/></Profile>
                 )}
+                   <LoginButton/>
+                     <LogOutButton/>
             </SearchLoginWrapper>
            
         </Wrapper>
@@ -46,26 +52,39 @@ background-color:var(--color-Gray);
 
 const LogoWrapper = styled.div``;
 
-const Logo = styled.img``;
 
 const Title = styled(Link)`
 font-family: "Bungee Inline";
 color: var(--color-Yellow);
 text-decoration: none;
 font-size: 50px;
+height:150px;
 `;
 
 const SearchLoginWrapper = styled.div`
 display:flex;
 /* flex-direction:column ; */
 margin-right:60px;
+align-items: center;
+gap:20px;
+
 `;
 
-// const SearchBar = styled.div``;
 
+const Beers =styled(Link)`
+color: var(--color-Yellow);
+  
+`;
 
-const Beers =styled(Link)``;
+const Brewery = styled(Link)`
+color: var(--color-Yellow);
+`;
 
-const Brewery = styled(Link)``;
+const Profile = styled(Link)`
+color: var(--color-Yellow);
+`;
 
-const Profile = styled(Link)``;
+const Logo = styled.img`
+height: 150 px;
+width: 150px;
+`;

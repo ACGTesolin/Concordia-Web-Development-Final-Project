@@ -77,7 +77,7 @@ background-color: var(--color-ghostWhite);
 margin-left:10px;
 margin-bottom: 10px;
 border: solid 2px black;
-border-radius: 15px;
+border-radius: 5px;
 font-family: "varela";
 &:hover {
   cursor: pointer;

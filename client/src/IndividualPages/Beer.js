@@ -3,6 +3,7 @@ import { useEffect, useState} from "react";
 import {useNavigate, useParams, Link} from "react-router-dom";
 import {useAuth0} from "@auth0/auth0-react";
 import CommentBox from "../Components/CommentBox";
+import Rate from "../Components/Rate";
 
 
 const Beer = () => {
@@ -100,6 +101,7 @@ const Beer = () => {
             </Content>
                 
             }
+            <Rate/>
             <CommentWrapper>
             <CommentBox/>
             
@@ -121,6 +123,8 @@ border-radius: 20px;
 
 const CommentWrapper = styled.div`
 min-height:100vh;
+border: solid 1px var(--color-Yellow);
+margin-top: 40px;
 `;
 
 const Favourite = styled.button`
@@ -147,7 +151,7 @@ min-width:100vw;
 display:flex;
 justify-content:space-around;
 background-color: var(--color-DarkGray); 
-
+flex-direction: column;
 `;
 
 const ImgWrapper = styled.div`
@@ -156,8 +160,9 @@ width:200px;
 `;
 
 const Img = styled.img`
-height:490px;
-width:380px;
+height:200%;
+width:100%;
+margin-left: 50px;
 `;
 
 const InfoWrapper = styled.div`
@@ -168,7 +173,7 @@ display:flex;
 flex-direction: column;
 justify-content:center;
 gap:20px;
-margin-left:30px;
+margin-left:60px;
 `;
 
 const Name = styled.div`

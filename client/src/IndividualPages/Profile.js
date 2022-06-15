@@ -70,12 +70,14 @@ isAuthenticated && favourites &&  (
         <Wrapper>
             <InfoWrapper>
                 <Img src={user.picture} /> 
-                <h2> {user.name}</h2>
-                <p>{user.email}</p>
+                <Name> {user.name}</Name>
+                <Email>{user.email}</Email>
        
             </InfoWrapper>
+            <HR/>
                 <FavouriteWrapper>
-                    <h2>Favourite Beers</h2>
+                    <FavTitle>Favourite Beers</FavTitle>
+                    <HR/>
                 {favourites.map((favourite)=>{
                     return(
                     <Fav2 key={favourite._id}>
@@ -85,17 +87,23 @@ isAuthenticated && favourites &&  (
                         onClick={() => {
                         handleClick(favourite.beerId)
                         }}>
+                            
                             <BeerName>{favourite.name}</BeerName>
                             <BeerImg src={favourite.img}/>
+                          
                         </Favourite>
-                            <Delete onClick={() => {
+                        <Delete onClick={() => {
                                 setDeleteId(favourite._)
                                 handleDelete(favourite._id)
                                 }}>Remove</Delete>
+                            <HR/>
                     </Fav2>
+                      
                     )
                 })} 
+                  
             </FavouriteWrapper>
+          
         </Wrapper>
         )
     )
@@ -103,24 +111,64 @@ isAuthenticated && favourites &&  (
 
 export default Profile;
 
+const FavTitle = styled.div`
+margin-top: 30px;
+font-family: "varela";
+font-size:30px;
+color: var(--color-Yellow);
+`;
+
+const HR = styled.hr`
+width:80%;
+color:var(--color-ghostWhite);
+margin-top:40px;
+`;
+
+const Name = styled.h2`
+font-family: "Bungee Inline";
+color: var(--color-Yellow);
+font-size:40px;
+`;
+
+const Email = styled.div`
+font-family: "varela";
+color: var(--color-Gray);
+`;
+
 const Wrapper = styled.div`
 min-height:100vh;
 min-width:100vw; 
 display:flex;
+align-items: center;
 flex-direction: column;
 background-color: var(--color-DarkGray); 
 `;
 
-const InfoWrapper = styled.div``;
+const InfoWrapper = styled.div`
+display:flex;
+align-items: center;
+flex-direction: column;
+margin-top:40px;
+`;
 
-const FavouriteWrapper = styled.div``;
+const FavouriteWrapper = styled.div`
+display:flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+width:70%;
+
+`;
 
 const Favourite = styled.button`
 display:flex;
+
 margin:60px;
 align-items: center;
+justify-content: center;
 background-color: var(--color-DarkGray);
 border: none;
+gap:20px;
 &
 :hover{
     cursor: pointer;
@@ -140,9 +188,18 @@ font-family: "Bungee Inline";
 color: var(--color-Yellow);
 `;
 
-const Img = styled.img``;
+const Img = styled.img`
+height:300px;
+border-radius:50%;
+`;
 
-const Fav2 = styled.div``;
+const Fav2 = styled.div`
+display:flex;
+flex-direction: column;
+justify-content: center;
+width:70%;
+align-items: center;
+`;
 
 const Delete = styled.button`
 border: none;
@@ -150,6 +207,9 @@ background-color: var(--color-Yellow);
 border-radius:20px;
 font-family: "varela";
 color: var(--color-DarkGray);
+height: 40px;
+width:20%;
+margin-left:40px;
 &
 :hover{
     cursor: pointer;

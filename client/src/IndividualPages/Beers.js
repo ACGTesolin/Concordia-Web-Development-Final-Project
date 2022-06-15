@@ -26,11 +26,13 @@ return (
                 handleClick(beer._id)
                   }}>
                     <BeerWrapper key={beer._id}>
+                        <div>
                         <BeerImg src = {beer.img} />
+                        </div>
                         <Name>{beer.name}</Name>
-                        <Type>{beer.type}</Type>
-                        <ABV>{beer.abv}</ABV>
-                        <Brewery>{beer.brewery}</Brewery>
+                        <Type>Type: {beer.type}</Type>
+                        <ABV>ABV: {beer.abv}</ABV>
+                        <Brewery>Brewery: {beer.brewery}</Brewery>
                     </BeerWrapper>
                 </Button>
             )
@@ -58,31 +60,53 @@ background-size: cover;
 
 const BeerWrapper = styled.div`
 font-family:"Varela";
-
+display: flex;
+align-items:center;
+justify-content: left;
+margin:30px;
+gap:10px;
 `;
 
-const BeerImg = styled.img``;
+const BeerImg = styled.img`
+height:100px;
+width:40px;
+`;
 
 const Name = styled.div`
 color: var(--color-Yellow);
 font-weight:bold;
+display:flex;
+font-family:"Bungee Inline";
 `;
  
 const Type = styled.div`
 color:var(--color-ghostWhite);
+display:flex;
+flex-direction: column;
 `;
 
 const ABV = styled.div`
 color:var(--color-ghostWhite);
+display:flex;
+flex-direction: column;
 `;
 
 const Brewery = styled.div`
 color:var(--color-ghostWhite);
+display:flex;
+flex-direction: column;
 `;
 
 const Button = styled.button`
 background-color: var(--color-DarkGray);
-border:none;
+border:solid 2px var(--color-Yellow);
+justify-content:left;
+position:relative;
+left:30px;
+width:70%;
+border-right:none;
+border-left: none;
+margin:10px;
 &
 :hover{
     transform:scale(1.06);

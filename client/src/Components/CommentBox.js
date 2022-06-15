@@ -126,7 +126,7 @@ const Wrapper = styled.div`
 
 const CommentBoxWrapper = styled.div`
   border-bottom: 10px;
-  border: solid 1px;
+
   `;
 
   const NewComment = styled.form`
@@ -155,6 +155,8 @@ const CommentInput = styled.textarea`
 const Button = styled.button`
 font-family: "varela";
 background-color: var(--color-Yellow);
+margin-top: 20px;
+margin-bottom: 30px;
   color: var(--color-DarrkGray);
   height: 35px;
   width: 150px;

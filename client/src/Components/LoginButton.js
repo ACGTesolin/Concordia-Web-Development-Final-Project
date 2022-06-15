@@ -20,4 +20,10 @@ const LoginButton = () => {
 
 export default LoginButton;
 
-const Button = styled.button``;
+const Button = styled.button`
+border:none;
+background-color:var(--color-Yellow);
+font-family: "varela";
+color: var(--color-DarkGray);
+border-radius: 5px;
+`;

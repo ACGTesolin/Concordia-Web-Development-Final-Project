@@ -94,13 +94,11 @@ const Wrapper = styled.div`
 `;
 
 
-
-
 const Input = styled.input`
-  margin-bottom: 5px;
-  height: 2rem;
+  margin-bottom: -40px;
+  height: 5px;
   width: 250px;
-  border-radius: 3px;
+  border-radius: 5px;
   margin-right: 10px;
   border: none;
   outline: none;
@@ -115,13 +113,14 @@ const Input = styled.input`
 
 const BeerList = styled.ul`
   position: absolute;
-  top: 30px;
+  top: 40px;
   border: 1px lightgray solid;
   margin-top: 5px;
   display: ${(prop) => (prop.isShown ? "block" : "none")};
   padding: 0;
   background-color: whitesmoke;
   z-index: 2;
+  font-weight: "varela";
 `;
 
 const Beer = styled.li`
@@ -130,8 +129,11 @@ const Beer = styled.li`
   padding: 10px;
   list-style-type: none;
   cursor: pointer;
+  font-family: "varela";
+  color:var(--color-DarkGray)
 `;
 
 const Prediction = styled.span`
   font-weight: bold;
+  color: var(--color-Yellow);
 `;

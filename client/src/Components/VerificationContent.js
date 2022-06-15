@@ -15,12 +15,12 @@ const VerificationContent = () => {
         window.sessionStorage.setItem("verification", JSON.stringify(true));
               
       };
-console.log(AgeContext)
+
     return(
 
 
             <VerWrapper>
-<Title>Broue-Mance </Title>
+        <Title src="/Broue-ManceWhiteLogoOrange.png"/>
         <Restriction>This page is age restricted. </Restriction>
         <VLabel>
                 
@@ -50,11 +50,10 @@ const VerWrapper = styled.div`
 text-align: center;
 position:relative;`;
 
-const Title = styled.h1`
-font-family: "Bungee Inline";
-font-size: 80px;
+const Title = styled.img`
 margin-bottom: 30px;
-color: var(--color-Yellow);
+height:500px;
+
 `;
 
 
@@ -72,6 +71,7 @@ font-family: "varela";
 color: var(--color-DarkGray);
 height:30px;
 width:100px;
+margin-top:20px;
 &
 :hover {
     cursor: pointer;
