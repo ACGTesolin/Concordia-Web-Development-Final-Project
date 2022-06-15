@@ -26,7 +26,6 @@ const BeerSearchBar = () => {
 
   const handleClick = (beerId) => {
     navigate(`/beer/${beerId}`);
-    
   };
 
   return (
@@ -62,7 +61,7 @@ const BeerSearchBar = () => {
                     onClick={() => {
                       setValue(beer.name);
                       handleClick(beer._id);
-                      setDropDownVisible(false)
+                      setDropDownVisible(false);
                       window.location.reload();
                     }}
                   >
@@ -71,10 +70,8 @@ const BeerSearchBar = () => {
                       <Prediction>{secondHalf}</Prediction>
                     </span>
                   </Beer>
-                  
                 );
               })}
-            
             </BeerList>
           )}
         </Wrapper>
@@ -93,7 +90,6 @@ const Wrapper = styled.div`
   padding-bottom: 40px;
 `;
 
-
 const Input = styled.input`
   margin-bottom: -40px;
   height: 5px;
@@ -102,11 +98,11 @@ const Input = styled.input`
   margin-right: 10px;
   border: none;
   outline: none;
-  color:var(--color-DarkGray);
+  color: var(--color-DarkGray);
   background-color: white;
   border: 1px solid #343a40;
   padding: 20px 6px;
-  font-family:"varela";
+  font-family: "varela";
   &:focus {
   }
 `;
@@ -130,7 +126,7 @@ const Beer = styled.li`
   list-style-type: none;
   cursor: pointer;
   font-family: "varela";
-  color:var(--color-DarkGray)
+  color: var(--color-DarkGray);
 `;
 
 const Prediction = styled.span`

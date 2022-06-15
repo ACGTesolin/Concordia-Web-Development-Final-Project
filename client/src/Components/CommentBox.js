@@ -120,9 +120,7 @@ const CommentBox = () => {
 
 export default CommentBox;
 
-const Wrapper = styled.div`
 
-`;
 
 const CommentBoxWrapper = styled.div`
   border-bottom: 10px;

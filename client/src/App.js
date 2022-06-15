@@ -4,7 +4,6 @@ import {
   Route,
   Navigate,
 } from "react-router-dom";
-import   {Redirect} from "react-router";
 import styled from "styled-components";
 import Verification from "./IndividualPages/Verification";
 import Home from "./IndividualPages/Home";
@@ -13,7 +12,6 @@ import Beers from "./IndividualPages/Beers";
 import Breweries from "./IndividualPages/Breweries";
 import Brewery from "./IndividualPages/Brewery";
 import Profile from "./IndividualPages/Profile";
-import Location from "./IndividualPages/Location";
 import Beer from "./IndividualPages/Beer";
 import GlobalStyles from "./GlobalStyles";
 import Footer from "./Components/Footer";
@@ -47,7 +45,6 @@ const App = () => {
             <Route path="/breweries" element={ageVerification ? <Breweries/> : <Navigate to="/"/>} />
             <Route path="/brewery/:id" element={ageVerification ? <Brewery/> : <Navigate to="/"/>} />
             <Route path="/my-account" element={!ageVerification  ? <Navigate to="/"/> : ageVerification && !isAuthenticated ? <Navigate to="/home"/> :  <Profile/>   } />
-            <Route path="/location" element={<Location/>} />
           </Routes>
           </ContentContainer>
   

@@ -1,29 +1,22 @@
-import {useAuth0} from "@auth0/auth0-react";
+import { useAuth0 } from "@auth0/auth0-react";
 import styled from "styled-components";
 
 const LoginButton = () => {
+  const { loginWithRedirect, isAuthenticated } = useAuth0();
 
-    const {loginWithRedirect, isAuthenticated} = useAuth0();
-
-    return(
-        !isAuthenticated && (
-
-        <Button onClick={()=>loginWithRedirect()}>
-
-            Log In
-
-        </Button>
-        )
+  return (
+    !isAuthenticated && (
+      <Button onClick={() => loginWithRedirect()}>Log In</Button>
     )
+  );
 };
-
 
 export default LoginButton;
 
 const Button = styled.button`
-border:none;
-background-color:var(--color-Yellow);
-font-family: "varela";
-color: var(--color-DarkGray);
-border-radius: 5px;
+  border: none;
+  background-color: var(--color-Yellow);
+  font-family: "varela";
+  color: var(--color-DarkGray);
+  border-radius: 5px;
 `;
