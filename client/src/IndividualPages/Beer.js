@@ -1,9 +1,10 @@
 import styled from "styled-components";
 import { useEffect, useState} from "react";
-import {useNavigate, useParams, Link} from "react-router-dom";
+import { useParams, Link} from "react-router-dom";
 import {useAuth0} from "@auth0/auth0-react";
 import CommentBox from "../Components/CommentBox";
 import Rate from "../Components/Rate";
+import Loading from "../Components/Loading";
 
 
 const Beer = () => {
@@ -14,11 +15,10 @@ const Beer = () => {
     const [error, setError]= useState(false);
     const {user, isAuthenticated} = useAuth0();
     const [isFavourite, setIsFavourite] = useState(null);
-    const [favourited, setFavourited] = useState()
-    let faveArray = [];
+   
+ 
 
-    
-
+//this function retrieves information on a single beer from the database
     useEffect(() =>{
 
         fetch(`/api/beer/${id}`)
@@ -36,11 +36,12 @@ const Beer = () => {
         })
     },[]);
 
+    //this function adds a favourited beer to the database 
     const handleSubmit = ((e) => {
 
         e.preventDefault();
         setIsFavourite(e)
-        setFavourited("Favourite")
+   
         fetch("/api/add-favourite", {
             method: "POST",
             headers:{
@@ -61,6 +62,7 @@ const Beer = () => {
         })
 });
 
+//this function is used to check whether or not the current user has favourited the specific beer and change the favourite button
  useEffect(()=>{
 
         fetch(`/api/beer-favourites/${id}`)
@@ -79,7 +81,9 @@ const Beer = () => {
         })
 
     },[])
-    console.log(favourited)
+    
+    if (isLoaded === false) return <Loading/>
+
        return (
 
         <Wrapper>
@@ -88,22 +92,27 @@ const Beer = () => {
                 <ImgWrapper>
                     <Img src={beer.img}></Img>
                 </ImgWrapper>
-                <InfoWrapper>
-                    <Name>{beer.name}</Name>
-                    <Type>{beer.type}</Type>
-                    <Abv>ABV: {beer.abv}</Abv>
-                    <Description>{beer.description}</Description>
-                    <Brewery to = {`/brewery/${beer.breweryId}`}>Go to: {beer.brewery}</Brewery>
-                    { isAuthenticated && isFavourite.length === 0 ? (
-                    <Favourite onClick={handleSubmit}> Add Favourite</Favourite>
-                    ):(isFavourite && isFavourite.length === 1 ? (<FavMsg>Favourite</FavMsg>):(null))}
-                </InfoWrapper>
+                    <InfoWrapper>
+
+                        <Name>{beer.name}</Name>
+                        <Type>{beer.type}</Type>
+                        <Abv>ABV: {beer.abv}</Abv>
+                        <Description>{beer.description}</Description>
+
+                        <Brewery to = {`/brewery/${beer.breweryId}`}>Go to: {beer.brewery}</Brewery>
+
+                        { isAuthenticated && isFavourite.length === 0 ? (//favourite button only appears if logged in and not favourite
+                        <Favourite onClick={handleSubmit}> Add Favourite</Favourite>
+                        ):(isFavourite && isFavourite.length === 1 ? (<FavMsg>Favourite</FavMsg>):(null))}
+
+                    </InfoWrapper>
             </Content>
                 
             }
             <Rate/>
-            <CommentWrapper>
-            <CommentBox/>
+                <CommentWrapper>
+                        
+                        <CommentBox/>
             
             </CommentWrapper>
 
@@ -122,9 +131,13 @@ border-radius: 20px;
 `;
 
 const CommentWrapper = styled.div`
-min-height:100vh;
 border: solid 1px var(--color-Yellow);
 margin-top: 40px;
+margin-left:150px;
+width:75%;
+height:40%;
+margin-bottom: 40px;
+padding:30px;
 `;
 
 const Favourite = styled.button`
@@ -162,7 +175,7 @@ width:200px;
 const Img = styled.img`
 height:200%;
 width:100%;
-margin-left: 50px;
+margin-left: 150px;
 `;
 
 const InfoWrapper = styled.div`
@@ -173,7 +186,7 @@ display:flex;
 flex-direction: column;
 justify-content:center;
 gap:20px;
-margin-left:60px;
+margin-left:190px;
 `;
 
 const Name = styled.div`

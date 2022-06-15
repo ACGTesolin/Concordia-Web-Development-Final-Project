@@ -5,16 +5,19 @@ import {useParams} from "react-router-dom";
 import Comment from "../Components/Comment";
 
 const CommentBox = () => {
+
     const [textEntry, setTextEntry] = useState("");
     const {user, isAuthenticated} = useAuth0();
     const {id} = useParams();
     const [comments, setComments] = useState();
 
+    //stores the text entered in the textEntry state
     const handleChange = (event) => {
       setTextEntry(event.target.value);
      
     };
 
+    //this function retrieves all the comments for a specific beer from the database
     useEffect(() => {
 
       fetch(`/api/get-comments/${id}`)
@@ -32,6 +35,7 @@ const CommentBox = () => {
 
     },[])
   
+    //this function adds the the user's comment to the database
     const handleSubmit = (e) => {
 
       e.preventDefault();
@@ -53,17 +57,16 @@ const CommentBox = () => {
           .then((res) => res.json())
   
           .then((data) => {
-            
+            //add the new comments to the comments state and repopulate the feed in realtime
             const newComment = data.data;
             let currentComments = [newComment, ...comments]
-            console.log(currentComments)
-          setComments(currentComments)
+            setComments(currentComments)
           })
           .catch((error) => {
         
           });
       }
-      setTextEntry("");
+      setTextEntry("");//erase the entered text from the input area
     };
   
  
@@ -80,7 +83,7 @@ const CommentBox = () => {
               aria-label="new-tweet-here"
               value={textEntry}
             ></CommentInput>
-   {isAuthenticated &&(
+   {isAuthenticated &&( //comments can only be made if the user is authenticated
               <Button
                 type="submit"
                 value="comment"
@@ -92,7 +95,7 @@ const CommentBox = () => {
       )}
 
           </NewComment>
-           {comments.map((comment)=>{
+           {comments.map((comment)=>{//map all the comments for a specific beer into the feed
              return (
               <Comment key={comment._id}
               avatarSrc={comment.avatar}
@@ -103,16 +106,8 @@ const CommentBox = () => {
              )
           })}
           </div>
-          
-
-          
-      }
-    
-       
-           
-       
-         
-        </CommentBoxWrapper>
+        }
+    </CommentBoxWrapper>
         
     );
   };
@@ -124,8 +119,8 @@ export default CommentBox;
 
 const CommentBoxWrapper = styled.div`
   border-bottom: 10px;
-margin-left:50px;
-margin-top:30px;
+  margin-left:50px;
+  
   `;
 
   const NewComment = styled.form`
@@ -138,7 +133,6 @@ margin-top:30px;
 
 const CommentInput = styled.textarea`
   color: var(--color-DarkGray);
-  margin-top: 10px;
   resize: none;
   width: 100%;
   width: 500px;
@@ -146,6 +140,8 @@ const CommentInput = styled.textarea`
   font-size: 18px;
   font-family: "varela";
   border: 0px solid;
+  border-radius:5px;
+  padding:10px;
   &:focus {
     outline: none;
   }

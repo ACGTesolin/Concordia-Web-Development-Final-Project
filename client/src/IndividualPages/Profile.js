@@ -2,6 +2,7 @@ import {useAuth0} from "@auth0/auth0-react";
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 import {useNavigate} from "react-router-dom";
+import Loading from "../Components/Loading";
 
 const Profile = () => {
 
@@ -9,13 +10,15 @@ const Profile = () => {
     const {user, isAuthenticated} = useAuth0();
     const [favourites, setFavourites] = useState();
     const [deleteId, setDeleteId] = useState();
+    const [isLoaded, setIsLoaded] = useState(false);
 
-
+//navigate to a specific beer page
     const handleClick = (beerId) => {
         navigate(`/beer/${beerId}`)
 
     };
     
+    //retrieves all the favourited beers for a specific user
     useEffect(()=>{
 
         fetch(`/api/favourites/${user.sub}`)
@@ -32,6 +35,7 @@ const Profile = () => {
 
     },[])
 
+    //removes a favourited beer from the database
     const handleDelete = ((e)=>{
 
         // e.preventDefault();
@@ -51,7 +55,7 @@ const Profile = () => {
         .then((data) => {
         
             if(data.status === 200){
-            let newFavs = favourites.filter(fav => fav._id !== data.data);
+            let newFavs = favourites.filter(fav => fav._id !== data.data);//update the favourite list in real time when remove is clicked
 
             return setFavourites(newFavs)
          
@@ -64,7 +68,7 @@ const Profile = () => {
 
     });
 
-
+    {(isLoaded === false) && <Loading/>}
     return (
 isAuthenticated && favourites &&  (
         <Wrapper>
@@ -78,7 +82,7 @@ isAuthenticated && favourites &&  (
                 <FavouriteWrapper>
                     <FavTitle>Favourite Beers</FavTitle>
                     <HR/>
-                {favourites.map((favourite)=>{
+                {favourites.map((favourite)=>{//render all the favourited beers for the user
                     return(
                     <Fav2 key={favourite._id}>
                         <Favourite 

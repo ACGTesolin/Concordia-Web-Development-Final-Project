@@ -9,7 +9,7 @@ const Breweries = () => {
     
     const navigate = useNavigate();
 
-    const handleClick = (breweryId) => {
+    const handleClick = (breweryId) => {//navigate to the specified brewery
         navigate(`/brewery/${breweryId}`)
     }
 
@@ -19,7 +19,7 @@ const Breweries = () => {
 
 {allBreweries &&
     <>
-        {allBreweries.map((brewery)=>{
+        {allBreweries.map((brewery)=>{//render the entire list of breweries with their corresponding icon
             // console.log(beer.img)
             return (
                 <BreweryButton

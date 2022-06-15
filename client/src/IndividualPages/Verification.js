@@ -5,18 +5,13 @@ import VerificationContent from "../Components/VerificationContent"
 
 const Verification = () => {
 
-   
 
     return(
         
         <Wrapper>
-<Background></Background>
-<VerificationContent/>
-
-
+            <Background></Background>
+                <VerificationContent/>
         </Wrapper>
-     
-
     )
 };
 

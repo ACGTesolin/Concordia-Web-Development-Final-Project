@@ -24,6 +24,7 @@ const BeerSearchBar = () => {
       })
       .slice(0, 4); //only stores the first 4 search results, otherwise it'll display dozens of results
 
+      //navigates to the chosen beer
   const handleClick = (beerId) => {
     navigate(`/beer/${beerId}`);
   };

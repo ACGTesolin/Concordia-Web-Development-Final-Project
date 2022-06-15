@@ -1,6 +1,6 @@
-import {createContext, useEffect, useState} from "react";
+import {createContext, useState} from "react";
 
-const AgeContext = createContext(null);
+const AgeContext = createContext(null);//this context provides information as to whether or not the user has verified there age
 
 
 export const AgeProvider = ({children}) => {

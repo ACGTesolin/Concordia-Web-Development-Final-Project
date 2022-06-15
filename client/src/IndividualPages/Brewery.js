@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { useEffect, useState} from "react";
 import {useNavigate, useParams} from "react-router-dom";
+import Loading from "../Components/Loading";
 
 const Brewery = () => {
 
@@ -11,6 +12,8 @@ const Brewery = () => {
     const [error, setError]= useState(false);
     const navigate = useNavigate();
 
+
+//this function retrieves the information for a single brewery
    useEffect(() =>{
 
     fetch(`/api/brewery/${id}`)
@@ -29,6 +32,7 @@ const Brewery = () => {
 
    },[]);
 
+   //this function retrieves the information for all the beers pertaining to a specific brewery
    useEffect(() =>{
 
     fetch(`/api/brewery-beers/${id}`)
@@ -46,9 +50,13 @@ const Brewery = () => {
     })
 },[]);
 
+//navigate to a specific beer page
 const handleClick = (beerId) => {
     navigate(`/beer/${beerId}`)
 }
+
+if (isLoaded === false) return <Loading/>
+
 return (
     <Wrapper>
 {brewery &&
@@ -76,7 +84,7 @@ return (
     {beers && brewery &&
 
     <BeersWrapper>
-        {beers.map((beer)=>{
+        {beers.map((beer)=>{//all beers for a specific brewery are rendered to the page
             return (
                 <Button key={beer._id}
                 name="individualBeer"

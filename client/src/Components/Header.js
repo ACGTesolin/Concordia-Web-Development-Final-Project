@@ -9,36 +9,45 @@ import { GiFactory } from "react-icons/gi";
 import { CgProfile } from "react-icons/cg";
 
 const Header = () => {
-  const {  isAuthenticated } = useAuth0();
+  const { isAuthenticated } = useAuth0();
 
-  return (
-    <Wrapper>
-      <LogoWrapper>
-        <Title to="/home">
-          <Logo src="/Broue-ManceWhiteLogoOrange.png" />
-        </Title>
-      </LogoWrapper>
+    return (
+      <Wrapper>
 
-      <SearchLoginWrapper>
-        <BeerSearchBar />
+        <LogoWrapper>
 
-        <Beers to="/beers">
-          <IoIosBeer size={40} />
-        </Beers>
-        <Brewery to="/breweries">
-          <GiFactory size={40} />
-        </Brewery>
-        {isAuthenticated && (
-          <Profile to="/my-account">
-            <CgProfile size={40} />
-          </Profile>
-        )}
-        <LoginButton />
-        <LogOutButton />
-      </SearchLoginWrapper>
-    </Wrapper>
-  );
-};
+          <Title to="/home">
+
+            <Logo src="/Broue-ManceWhiteLogoOrange.png" />
+
+          </Title>
+
+        </LogoWrapper>
+
+        <SearchLoginWrapper>
+
+          <BeerSearchBar />
+
+          <Beers to="/beers">
+            <IoIosBeer size={40} />
+          </Beers>
+
+          <Brewery to="/breweries">
+            <GiFactory size={40} />
+          </Brewery>
+
+          {isAuthenticated && ( //the profile button only appears when logged in and authenticated
+            <Profile to="/my-account">
+              <CgProfile size={40} />
+            </Profile>
+          )}
+          
+          <LoginButton />
+          <LogOutButton />
+        </SearchLoginWrapper>
+      </Wrapper>
+    );
+  };
 
 export default Header;
 
@@ -71,6 +80,7 @@ const SearchLoginWrapper = styled.div`
 
 const Beers = styled(Link)`
   color: var(--color-Yellow);
+
 `;
 
 const Brewery = styled(Link)`
@@ -84,4 +94,5 @@ const Profile = styled(Link)`
 const Logo = styled.img`
   height: 150 px;
   width: 150px;
+  margin-left: 30px;
 `;

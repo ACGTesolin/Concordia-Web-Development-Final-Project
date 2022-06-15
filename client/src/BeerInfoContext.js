@@ -1,12 +1,12 @@
 import {createContext, useEffect, useState} from "react";
-import {useAuth0} from "@auth0/auth0-react";
 
-const BeerInfoContext = createContext(null);
+
+const BeerInfoContext = createContext(null);//this context is used to provide the information on all beers and breweries to the rest of the components
 
 
 export const BeerInfoProvider = ({children}) => {
 
-    const {user} = useAuth0();
+ 
 
     const [allBeers, setAllBeers] = useState();
 
@@ -14,6 +14,7 @@ export const BeerInfoProvider = ({children}) => {
 
     const [favourites, setFavourites] = useState();
 
+    //this function retrieves a list of all the breweries from the database
     useEffect(() => {
 
         fetch ("/api/breweries")
@@ -24,6 +25,7 @@ export const BeerInfoProvider = ({children}) => {
             })    
     },[]);
 
+    //this function retrieves a list of all the beers from the database
      useEffect(() => {
 
         fetch ("/api/beers")

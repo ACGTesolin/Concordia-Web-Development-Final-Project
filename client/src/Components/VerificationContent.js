@@ -9,9 +9,10 @@ const VerificationContent = () => {
   const { ageVerification, setAgeVerification } = useContext(AgeContext);
 
   const handleClick = () => {
+    
     setAgeVerification(!ageVerification);
     navigate("/home");
-    window.sessionStorage.setItem("verification", JSON.stringify(true));
+    window.sessionStorage.setItem("verification", JSON.stringify(true));//verification is stored in session.storage until the user leaves page or logs out
   };
 
   return (
